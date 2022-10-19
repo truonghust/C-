@@ -1,9 +1,9 @@
 #include "phoneexception.h"
 
-phoneException::phoneException (char* msg){
+PhoneException::PhoneException (char* msg){
     this->message =msg;
  }
 
- char* phoneException::what(){
+ char* PhoneException::what(){
          return message;
      }

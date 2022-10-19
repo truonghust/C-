@@ -1,9 +1,9 @@
 #include "controller.h"
-#define Add_goodStudent 1
-#define Add_normalStudent 2
-#define Search_candidate 3
-#define show_list 4
-#define show_listNamePhone 5
+#define add_GoodStudent 1
+#define add_NormalStudent 2
+#define search_Candidate 3
+#define show_List 4
+#define show_ListNamePhone 5
 #define numberStudent 6
 #define exit 7
 Controller::Controller()
@@ -11,33 +11,33 @@ Controller::Controller()
 
 }
 int Controller::MVC(){
-    view.Menu();
+    view.menu();
     while(1){
-    switch(view.Input()){
-    case Add_goodStudent:
+    switch(view.input()){
+    case add_GoodStudent:
     {
-        view.Add_status(l.Insert_goodStudent(view.Input_gstudent()));
+        view.add_Status(l.insert_GoodStudent(view.input_Gstudent()));
         break;
     }
-    case Add_normalStudent:
+    case add_NormalStudent:
     {
-        view.Add_status(l.Insert_normalStudent(view.Input_nstudent()));
+        view.add_Status(l.insert_NormalStudent(view.input_Nstudent()));
         break;
     }
-    case Search_candidate:
+    case search_Candidate:
     {
-        view.show_list_candidate(view.Input_nbofStudent(),l);
+        view.show_List_Candidate(view.input_NbofStudent(),l);
         break;
     }
-    case show_list:
+    case show_List:
     {
 
-        view.show_list_student(l);
+        view.show_List_Student(l);
         break;
     }
-    case show_listNamePhone:
+    case show_ListNamePhone:
     {
-        view.show_list_wname(l);
+        view.show_List_Wname(l);
         break;
     }
     case numberStudent:

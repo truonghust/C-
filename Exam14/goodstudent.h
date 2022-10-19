@@ -2,7 +2,7 @@
 #define GOODSTUDENT_H
 #include<student.h>
 
-class GoodStudent:public student
+class GoodStudent:public Student
 {
 public:
     double gpa;

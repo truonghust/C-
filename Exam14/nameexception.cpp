@@ -1,9 +1,9 @@
 #include "nameexception.h"
 
-nameException::nameException (char* msg){
+NameException::NameException (char* msg){
    this->message =msg;
 }
 
-char* nameException::what(){
+char* NameException::what(){
         return message;
     }

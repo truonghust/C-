@@ -5,34 +5,34 @@
 class View{
 public:
 View();
-void Menu();
+void menu();
 
-int Input();
-GoodStudent Input_gstudent();
-NormalStudent Input_nstudent();
-unsigned int Input_nbofStudent();
+int input();
+GoodStudent input_Gstudent();
+NormalStudent input_Nstudent();
+unsigned int input_NbofStudent();
 
-void show_list_student(list_Student & l);
+void show_List_Student(List_Student & l);
 
 //void show_found_list(list_Employee&l,unsigned int);
 
-void Add_status(int);
+void add_Status(int);
 
-int check_name(string &name);
+int check_Name(string &name);
 
 string standardized(string name);
 
-int check_day(unsigned int date,unsigned int month,unsigned int year);
+int check_Day(unsigned int date,unsigned int month,unsigned int year);
 
-int check_phone(string phone);
+int check_Phone(string phone);
 
-int check_nber(unsigned int number);
+int check_Nber(unsigned int number);
 
-void showNumberStudent(list_Student& l);
+void showNumberStudent(List_Student& l);
 
-void show_list_candidate(unsigned int number,list_Student& l);
+void show_List_Candidate(unsigned int number,List_Student& l);
 
-void show_list_wname(list_Student& l);
+void show_List_Wname(List_Student& l);
 
 ~View();
 

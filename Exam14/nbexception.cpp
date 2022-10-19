@@ -1,9 +1,9 @@
 #include "nbexception.h"
 
-nbException::nbException (char* msg){
+NbException::NbException (char* msg){
    this->message =msg;
 }
 
-char* nbException::what(){
+char* NbException::what(){
         return message;
     }

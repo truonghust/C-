@@ -12,7 +12,7 @@ View::View()
 
 }
 
-void View::Menu()
+void View::menu()
 {
     cout<<setw(30)<<left<<"1. Add new good student"<<setw(30)<<left<<"2. Add new normal student"
     <<setw(30)<<left<<"3. Choose candidates"<<endl;
@@ -21,7 +21,7 @@ void View::Menu()
                  setw(30)<<left<<"7. Exit"<<endl;
 }
 
-GoodStudent View::Input_gstudent(){
+GoodStudent View::input_Gstudent(){
 
     string name;
     int date,month,year;
@@ -35,11 +35,11 @@ GoodStudent View::Input_gstudent(){
     cout<<"Enter information:"<<endl<<"Name:";
     cin.ignore();
     getline(cin,name);
-    while(check_name(name)){
+    while(check_Name(name)){
         try{
-        throw nameException((char*)"Failure name, scanf again!");
+        throw NameException((char*)"Failure name, scanf again!");
     }
-    catch(nameException &f){
+    catch(NameException &f){
         cout<<f.what()<<endl;
         cout<<"Name:";
         //cin.ignore();
@@ -52,11 +52,11 @@ GoodStudent View::Input_gstudent(){
     cin>>month;
     cout<<"Birthday. Year:";
     cin>>year;
-    while(check_day(date,month,year)){
+    while(check_Day(date,month,year)){
         try{
-        throw birthdayException((char*)"Failure birthday, scanf again!");
+        throw BirthdayException((char*)"Failure birthday, scanf again!");
     }
-    catch(birthdayException &f){
+    catch(BirthdayException &f){
         cout<<f.what()<<endl;
         cout<<"Birthday. Date:";
         cin>>date;
@@ -69,11 +69,11 @@ GoodStudent View::Input_gstudent(){
     cout<<endl<<"Phone:";
     cin.ignore();
     getline(cin,phone);
-    while(check_phone(phone)){
+    while(check_Phone(phone)){
         try{
-        throw phoneException((char*)"Failure scanf or phone number has already exist, scanf again!");
+        throw PhoneException((char*)"Failure scanf or phone number has already exist, scanf again!");
     }
-    catch(phoneException &f){
+    catch(PhoneException &f){
         cout<<f.what()<<endl;
         cout<<endl<<"Phone:";
         getline(cin,phone);
@@ -96,7 +96,7 @@ GoodStudent View::Input_gstudent(){
     return GoodStudent(name,DMY(date,month,year),sex,phone,university,gradeLevel,0,gpa,reward);
     }
 
-NormalStudent View::Input_nstudent(){
+NormalStudent View::input_Nstudent(){
 
     string name;
     int date,month,year;
@@ -110,11 +110,11 @@ NormalStudent View::Input_nstudent(){
     cout<<"Enter information:"<<endl<<"Name:";
     cin.ignore();
     getline(cin,name);
-    while(check_name(name)){
+    while(check_Name(name)){
         try{
-        throw nameException((char*)"Failure name, scanf again!");
+        throw NameException((char*)"Failure name, scanf again!");
     }
-    catch(nameException &f){
+    catch(NameException &f){
         cout<<f.what()<<endl;
         cout<<"Name:";
         //cin.ignore();
@@ -127,11 +127,11 @@ NormalStudent View::Input_nstudent(){
     cin>>month;
     cout<<"Birthday. Year:";
     cin>>year;
-    while(check_day(date,month,year)){
+    while(check_Day(date,month,year)){
         try{
-        throw birthdayException((char*)"Failure birthday, scanf again!");
+        throw BirthdayException((char*)"Failure birthday, scanf again!");
     }
-    catch(birthdayException &f){
+    catch(BirthdayException &f){
         cout<<f.what()<<endl;
         cout<<"Birthday. Date:";
         cin>>date;
@@ -144,11 +144,11 @@ NormalStudent View::Input_nstudent(){
     cout<<endl<<"Phone:";
     cin.ignore();
     getline(cin,phone);
-    while(check_phone(phone)){
+    while(check_Phone(phone)){
         try{
-        throw phoneException((char*)"Failure scanf or phone number has already exist, scanf again!");
+        throw PhoneException((char*)"Failure scanf or phone number has already exist, scanf again!");
     }
-    catch(phoneException &f){
+    catch(PhoneException &f){
         cout<<f.what()<<endl;
         cout<<endl<<"Phone:";
         getline(cin,phone);
@@ -170,7 +170,7 @@ NormalStudent View::Input_nstudent(){
     return NormalStudent(name,DMY(date,month,year),sex,phone,university,gradeLevel,1,TOEIC,entry_testScore);
     }
 
-int View::Input(){
+int View::input(){
     int index;
     try{
     string x;
@@ -192,19 +192,19 @@ int View::Input(){
     return index;
 }
 
-unsigned int View::Input_nbofStudent(){
+unsigned int View::input_NbofStudent(){
     unsigned int nb;
-    list_Student l;
+    List_Student l;
     cout<<"Scanf number of candidate that you want to hire:";
     cin>>nb;
-    while(check_nber(nb)){
+    while(check_Nber(nb)){
         try{
             if(l.goodStd.size()+l.normalStd.size()==0){
-                throw nbException((char*)"List of student is empty, scanf again!");
+                throw NbException((char*)"List of student is empty, scanf again!");
             }
-        throw nbException((char*)"List of student is lower or failure scanf, scanf again!");
+        throw NbException((char*)"List of student is lower or failure scanf, scanf again!");
     }
-    catch(nbException &f){
+    catch(NbException &f){
         cout<<f.what()<<endl;
         cout<<endl<<"Scanf number of candidate that you want to hire:";
         cin>>nb;
@@ -212,7 +212,7 @@ unsigned int View::Input_nbofStudent(){
     }
     return nb;
 }
-void View::show_list_student(list_Student &l)
+void View::show_List_Student(List_Student &l)
 {
 
     if(l.pHead==nullptr){
@@ -225,7 +225,7 @@ void View::show_list_student(list_Student &l)
         }
 }
 
-void View::Add_status(int status){
+void View::add_Status(int status){
     switch (status) {
     case failure:
         cout<<"Id already exists. Please check input"<<endl;
@@ -250,7 +250,7 @@ string View::standardized(string name){
         }
         return standard;
     }
-int View::check_name(string &name)
+int View::check_Name(string &name)
 {
     name =standardized(name);
     for(unsigned int index =0; index<name.size();index++){
@@ -269,7 +269,7 @@ int View::check_name(string &name)
     }
     return 0;
 }
-int View::check_day(unsigned int day,unsigned int month,unsigned int year){
+int View::check_Day(unsigned int day,unsigned int month,unsigned int year){
     if(day<=0||month<=0||year<=1900||year>2050||day>31||month>12){
         return 1;
     }
@@ -291,11 +291,11 @@ int View::check_day(unsigned int day,unsigned int month,unsigned int year){
     }
 }
 
-int View::check_phone(string phone){
-    list_Student l;
+int View::check_Phone(string phone){
+    List_Student l;
     string z =phone;
     z.erase(z.begin()+3,z.end());
-    for(auto it =l.list_phone.begin();it!=l.list_phone.end();it++){
+    for(auto it =l.list_Phone.begin();it!=l.list_Phone.end();it++){
         if(*it==phone){
             return 1;
         }
@@ -316,9 +316,9 @@ int View::check_phone(string phone){
     return 1;
 }
 
-int View::check_nber(unsigned int number)
+int View::check_Nber(unsigned int number)
 {
-    list_Student l;
+    List_Student l;
     if((l.goodStd.size()+l.normalStd.size())< number){
         return 1;
     }
@@ -327,12 +327,12 @@ int View::check_nber(unsigned int number)
     }
 }
 
-void View::showNumberStudent(list_Student &l)
+void View::showNumberStudent(List_Student &l)
 {
     cout<<"List of student has "<<(l.goodStd.size()+l.normalStd.size())<<" student."<<endl;
 }
 
-void View::show_list_candidate(unsigned int number, list_Student &l)
+void View::show_List_Candidate(unsigned int number, List_Student &l)
 {
 
  if(number <= l.goodStd.size()){
@@ -351,15 +351,15 @@ else{
 }
 }
 
-void View::show_list_wname(list_Student &l)
+void View::show_List_Wname(List_Student &l)
 {
       if(l.pHead==NULL){
           cout<<"List student is empty!"<<endl;
       }
       else{
-      l.sort_list_name();
+      l.sort_List_Name();
       //cout<<"\t";
-      for(auto x= l.sort_namest.begin();x!=l.sort_namest.end();x++){
+      for(auto x= l.sort_Namest.begin();x!=l.sort_Namest.end();x++){
           //cout<<"\t";
           cout<<"Name:"<<(*x).first<<"   \t"<<"\t";
           cout<<"Phone:"<<(*x).second<<endl;

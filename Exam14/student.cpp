@@ -1,71 +1,71 @@
 #include "student.h"
 
-const DMY &student::getBirthday() const
+const DMY &Student::getBirthday() const
 {
     return birthday;
 }
 
-void student::setBirthday(const DMY &newBirthday)
+void Student::setBirthday(const DMY &newBirthday)
 {
     birthday = newBirthday;
 }
 
-const string &student::getSex() const
+const string &Student::getSex() const
 {
     return sex;
 }
 
-void student::setSex(const string &newSex)
+void Student::setSex(const string &newSex)
 {
     sex = newSex;
 }
 
-const string &student::getPhoneNumber() const
+const string &Student::getPhoneNumber() const
 {
     return phoneNumber;
 }
 
-void student::setPhoneNumber(const string &newPhoneNumber)
+void Student::setPhoneNumber(const string &newPhoneNumber)
 {
     phoneNumber = newPhoneNumber;
 }
 
-const string &student::getUniversityName() const
+const string &Student::getUniversityName() const
 {
     return universityName;
 }
 
-void student::setUniversityName(const string &newUniversityName)
+void Student::setUniversityName(const string &newUniversityName)
 {
     universityName = newUniversityName;
 }
 
-const string &student::getGradeLevel() const
+const string &Student::getGradeLevel() const
 {
     return gradeLevel;
 }
 
-void student::setGradeLevel(const string &newGradeLevel)
+void Student::setGradeLevel(const string &newGradeLevel)
 {
     gradeLevel = newGradeLevel;
 }
 
-const string &student::getFullName() const
+const string &Student::getFullName() const
 {
     return fullName;
 }
 
-void student::setFullName(const string &newFullName)
+void Student::setFullName(const string &newFullName)
 {
     fullName = newFullName;
 }
 
-student::student()
+Student::Student()
 {
 
 }
 
-student::student(string fullName, DMY doB, string sex, string phoneNumber,
+Student::Student(string fullName, DMY doB, string sex, string phoneNumber,
                  string universityName, string gradeLevel,int type)
 {
     this->fullName=fullName;
@@ -77,7 +77,7 @@ student::student(string fullName, DMY doB, string sex, string phoneNumber,
     this->type=type;
 }
 
-student::~student()
+Student::~Student()
 {
 
 }

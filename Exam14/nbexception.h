@@ -3,12 +3,12 @@
 #include<iostream>
 using namespace std;
 
-class nbException : public std::exception {
+class NbException : public std::exception {
     private:
     char * message;
 
     public:
-    nbException(char * msg);
+    NbException(char * msg);
     char * what ();
 };
 #endif // NBEXCEPTION_H

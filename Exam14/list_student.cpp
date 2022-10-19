@@ -2,17 +2,17 @@
 
 //int list_Student::count_gst=0;
 //int list_Student::count_nst=0;
-vector<pair<string,string>> list_Student::sort_namest;
+vector<pair<string,string>> List_Student::sort_Namest;
 //vector<pair<int,string>> list_Student::sort_nst;
-vector<GoodStudent> list_Student::goodStd;
-vector<NormalStudent> list_Student::normalStd;
-vector<string> list_Student::list_phone;
+vector<GoodStudent> List_Student::goodStd;
+vector<NormalStudent> List_Student::normalStd;
+vector<string> List_Student::list_Phone;
 
-list_Student::list_Student(){
+List_Student::List_Student(){
         pHead =pTail=NULL;
     }
 
-int list_Student::Insert_goodStudent(GoodStudent good)
+int List_Student::insert_GoodStudent(GoodStudent good)
 {
         if(pHead==NULL){
             Node* p(new Node);
@@ -25,15 +25,15 @@ int list_Student::Insert_goodStudent(GoodStudent good)
             pTail->pnext =p;
             pTail =p;
         }
-       list_phone.emplace_back(good.getPhoneNumber());
+       list_Phone.emplace_back(good.getPhoneNumber());
        //count_gst++;
        pair<string,string> p{good.getFullName(),good.getPhoneNumber()};
-       sort_namest.emplace_back(p);
+       sort_Namest.emplace_back(p);
        goodStd.emplace_back(good);
        return 1;
     }
 
-int list_Student::Insert_normalStudent(NormalStudent normal)
+int List_Student::insert_NormalStudent(NormalStudent normal)
 {
         if(pHead==NULL){
             Node* p(new Node);
@@ -46,15 +46,15 @@ int list_Student::Insert_normalStudent(NormalStudent normal)
             pTail->pnext =p;
             pTail =p;
         }
-       list_phone.emplace_back(normal.getPhoneNumber());
+       list_Phone.emplace_back(normal.getPhoneNumber());
        //count_nst++;
        pair<string,string> p{normal.getFullName(),normal.getPhoneNumber()};
-       sort_namest.emplace_back(p);
+       sort_Namest.emplace_back(p);
        normalStd.emplace_back(normal);
        return 1;
 }
 
-string list_Student::filterName(string fName)
+string List_Student::filterName(string fName)
 {
     //int index=0;
    fName = standardized(fName);
@@ -67,11 +67,11 @@ string list_Student::filterName(string fName)
 return fName;
 }
 
-list_Student::~list_Student(){
+List_Student::~List_Student(){
         Node*k;
         while(this->pHead!=NULL){
             k=this->pHead;
-            student* leak =k->student;
+            Student* leak =k->student;
             this->pHead=this->pHead->pnext;
             delete leak;
             leak=NULL;
@@ -80,7 +80,7 @@ list_Student::~list_Student(){
         }
     }
 
-string list_Student::standardized(string name){
+string List_Student::standardized(string name){
         string standard=name;
         while(*standard.begin()==' '){
             standard.erase(standard.begin());
@@ -96,7 +96,7 @@ string list_Student::standardized(string name){
         return standard;
 }
 
-void list_Student::sort_list_gstd()
+void List_Student::sort_List_Gstd()
 {
     for(auto it =goodStd.begin();it!=goodStd.end();it++){
         for(auto it1 =it+1;it1!=goodStd.end();it1++){
@@ -123,7 +123,7 @@ void list_Student::sort_list_gstd()
     }
 }
 
-void list_Student::sort_list_nstd()
+void List_Student::sort_List_Nstd()
 {
     for(auto it =normalStd.begin();it!=normalStd.end();it++){
         for(auto it1 =it+1;it1!=normalStd.end();it1++){
@@ -151,10 +151,10 @@ void list_Student::sort_list_nstd()
     }
 }
 
-void list_Student::sort_list_name()
+void List_Student::sort_List_Name()
 {
-    for(auto it =sort_namest.begin();it!=sort_namest.end();it++){
-        for(auto it1 =it+1;it1!=sort_namest.end();it1++){
+    for(auto it =sort_Namest.begin();it!=sort_Namest.end();it++){
+        for(auto it1 =it+1;it1!=sort_Namest.end();it1++){
             if(filterName(it1->first) < filterName(it->first)){
                 (*it).swap(*it1);
             }

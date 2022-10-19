@@ -4,12 +4,12 @@
 #include<iostream>
 using namespace std;
 
-class birthdayException : public std::exception {
+class BirthdayException : public std::exception {
     private:
     char * message;
 
     public:
-    birthdayException(char * msg);
+    BirthdayException(char * msg);
     char * what ();
 };
 

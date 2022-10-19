@@ -1,9 +1,9 @@
 #include "birthdayexception.h"
 
-birthdayException::birthdayException (char* msg){
+BirthdayException::BirthdayException (char* msg){
    this->message =msg;
 }
 
-char* birthdayException::what(){
+char* BirthdayException::what(){
         return message;
     }

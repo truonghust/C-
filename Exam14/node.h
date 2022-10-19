@@ -3,7 +3,7 @@
 #include<student.h>
 class Node{
 public:
-    student* student;
+    Student* student;
     Node*pnext;
 public:
     Node();

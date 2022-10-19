@@ -2,12 +2,12 @@
 #define NORMALSTUDENT_H
 #include<student.h>
 
-class NormalStudent:public student
+class NormalStudent:public Student
 {
 private:
     int englishScore;
     double entryTestScore;
-    static int count_normal;
+    static int count_Normal;
 public:
     NormalStudent();
     NormalStudent(string,DMY,string,string,string,string,int type,int,double);

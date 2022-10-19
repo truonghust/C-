@@ -6,7 +6,7 @@
 class Controller
 {
 private:
-    list_Student l;
+    List_Student l;
     View view;
 public:
     Controller();

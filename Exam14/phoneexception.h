@@ -4,12 +4,12 @@
 #include<iostream>
 using namespace std;
 
-class phoneException : public std::exception {
+class PhoneException : public std::exception {
     private:
     char * message;
 
     public:
-    phoneException(char * msg);
+    PhoneException(char * msg);
     char * what ();
 };
 

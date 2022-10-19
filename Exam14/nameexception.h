@@ -5,12 +5,12 @@
 #include<iostream>
 using namespace std;
 
-class nameException : public std::exception {
+class NameException : public std::exception {
     private:
     char * message;
 
     public:
-    nameException(char * msg);
+    NameException(char * msg);
     char * what ();
 };
 

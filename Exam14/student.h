@@ -3,7 +3,7 @@
 #include<iostream>
 using namespace std;
 #include<dmy.h>
-class student
+class Student
 {
 protected:
     string fullName;
@@ -14,10 +14,10 @@ protected:
     string gradeLevel;
     int type;
 public:
-    student();
-    student(string,DMY,string,string,string,string,int);
+    Student();
+    Student(string,DMY,string,string,string,string,int);
     virtual void showInfo()=0;
-    virtual~student();
+    virtual~Student();
     const DMY &getBirthday() const;
     void setBirthday(const DMY &newBirthday);
     const string &getSex() const;
