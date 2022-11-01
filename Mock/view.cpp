@@ -2,15 +2,19 @@
 #include<inputexception.h>
 #include<iomanip>
 #include<unistd.h>
+#define player1Victory 1
+#define player2Victory 2
+#define draw 3
 view::view()
 {
 }
 
-void view::showBoard(Caro& caro)
+void view::showBoard(Caro& caro,string name1,string name2)
 {
    setColor(4);
-   cout<<"Player 1<X> - Player 2<0>"<<endl;
+   cout<<right<<setw(42)<<name1<<"<X> - "<<name2<<"<0>"<<endl;
    for(int i= 0;i<10;i++){
+       cout<<left<<setw(26)<< " ";
        for(int j= 0;j<10;j++){
            if(caro.arr[i][j]==0){
                setColor(2);
@@ -31,7 +35,7 @@ void view::showBoard(Caro& caro)
                cout<<" |";
            }
        }
-       cout<<endl<<"----------------------------------------"<<endl;
+       cout<<endl<<left<<setw(26)<<" "<<"----------------------------------------"<<endl;
 }
 }
 
@@ -44,17 +48,15 @@ void view::menu()
           "5. Exit"<<endl;
 }
 int view::input(){
+    setColor(7);
     int index;
     try{
     string x;
     cout<<"Scan input:";
     //cin.ignore();
     getline(cin,x);
-    //cin>>x;
-    while(x.size()>=3||(x[0]<='0' ||x[0]>'9')){
+    while(x.size()>=3||(x[0]<='0' ||x[0]>'5')){
         cout<<"Scan input:";
-        //cin.ignore();
-        //getline(cin,x);
         getline(cin,x);;
     }
     index = stoi(x);
@@ -67,18 +69,20 @@ int view::input(){
 
 string view::inputName(string player)
 {
+  setColor(7);
   string name;
   cout<<player;
   getline(cin,name);
   return name;
 }
 
+
 void view::showPlayer(Player player)
 {
-    cout<<setw(5)<<left<<"Name:"<< setw(15) << right <<player.getName();
+    cout<<setw(5)<<left<<"Name: "<< setw(15) << left <<player.getName();
     cout<<"   Number of Win:"<<setw(5)<<right<<player.getNumberOfWin()
-       <<"   Number of Draw:"<<player.getNumberOfDraw()<<"   Number of Defeat:"
-      <<player.getNumberOfDefeat()<<endl;
+       <<"    Number of Draw:"<<setw(5)<<right<<player.getNumberOfDraw()<<"     Number of Defeat:"
+      <<setw(5)<<right<<player.getNumberOfDefeat()<<endl;
 }
 
 void view::searchPlayer(string name, listplayer& l)
@@ -90,6 +94,9 @@ void view::searchPlayer(string name, listplayer& l)
                 showPlayer(l.list[i]);
                 if(i==0){
                     showPlayer(l.list[i+1]);
+                }
+                else if(i==l.list.size()-1){
+                   showPlayer(l.list[i-1]);
                 }
                 else{
                     if((l.list[i-1].winRate()-l.list[i].winRate())>=
@@ -109,7 +116,7 @@ void view::searchPlayer(string name, listplayer& l)
 
 }
 
-void view::Replay()
+void view::Replay(string name1,string name2)
 {
     if(this->dataReplay.size()==0){
         cout<<"Do not exist the match,please play game before relay!"<<endl;
@@ -120,24 +127,25 @@ void view::Replay()
         for(unsigned int i=0;i<dataReplay.size();i++){
             if(flat==true){
                 c.addPlayer1(dataReplay[i]);
-                showBoard(c);
+                showBoard(c,name1,name2);
                 flat = false;
             }
             else{
                 c.addPlayer2(dataReplay[i]);
-                showBoard(c);
+                showBoard(c,name1,name2);
                 flat=true;
             }
             sleep(2);
         }
-       statusVictory(c.check_Victory());
+       statusVictory(c.check_Victory(),name1,name2);
     }
 }
 
-pair<int,int> view::inputPlayer1(Caro & caro)
+pair<int,int> view::inputPlayer1(Caro & caro,string name1)
 {
+   setColor(7);
    string index;
-   cout<<"Player 1 turn:";
+   cout<<name1<<" turn:";
    getline(cin,index);
    index =standardized(index);
    while(checkInput(index)){
@@ -146,7 +154,7 @@ pair<int,int> view::inputPlayer1(Caro & caro)
    }
    catch(InputException &f){
        cout<<f.what()<<endl;
-       cout<<"Player 1 turn:";
+       cout<<name1<<" turn:";
        getline(cin,index);
    }
    }
@@ -171,7 +179,7 @@ pair<int,int> view::inputPlayer1(Caro & caro)
    }
    catch(InputException &f){
        cout<<f.what()<<endl;
-       cout<<"Player 1 turn:";
+       cout<<name1<<" turn:";
        getline(cin,index);
        index =standardized(index);
        while(checkInput(index)){
@@ -180,7 +188,7 @@ pair<int,int> view::inputPlayer1(Caro & caro)
        }
        catch(InputException &f){
            cout<<f.what()<<endl;
-           cout<<"Player 1 turn:";
+           cout<<name1<<" turn:";
            getline(cin,index);
        }
        }
@@ -204,10 +212,11 @@ pair<int,int> view::inputPlayer1(Caro & caro)
    return p;
 }
 
-pair<int, int> view::inputPlayer2(Caro & caro)
+pair<int, int> view::inputPlayer2(Caro & caro,string name2)
 {
+    setColor(7);
     string index;
-    cout<<"Player 2 turn:";
+    cout<<name2<<" turn:";
     getline(cin,index);
     index =standardized(index);
     while(checkInput(index)){
@@ -216,7 +225,7 @@ pair<int, int> view::inputPlayer2(Caro & caro)
     }
     catch(InputException &f){
         cout<<f.what()<<endl;
-        cout<<"Player 2 turn:";
+        cout<<name2<<" turn:";
         getline(cin,index);
     }
     }
@@ -241,7 +250,7 @@ pair<int, int> view::inputPlayer2(Caro & caro)
     }
     catch(InputException &f){
         cout<<f.what()<<endl;
-        cout<<"Player 2 turn:";
+        cout<<name2<<" turn:";
         getline(cin,index);
         index =standardized(index);
         while(checkInput(index)){
@@ -250,7 +259,7 @@ pair<int, int> view::inputPlayer2(Caro & caro)
         }
         catch(InputException &f){
             cout<<f.what()<<endl;
-            cout<<"Player 2 turn:";
+            cout<<name2<<" turn:";
             getline(cin,index);
         }
         }
@@ -342,20 +351,20 @@ int view::checkName(string name,listplayer& l)
             return 1;
         }
     }
-      return 0;
+    return 0;
 }
 
-
-void view::statusVictory(int status)
+void view::statusVictory(int status,string name1,string name2)
 {
+    setColor(7);
     switch (status) {
-    case 1:
-        cout<<"Player 1: Victory!"<<endl;
+    case player1Victory:
+        cout<<name1<<": Victory!"<<endl;
         break;
-    case 2:
-        cout<<"Player 2: Victory!"<<endl;
+    case player2Victory:
+        cout<<name2<<": Victory!"<<endl;
         break;
-    case 3:
+    case draw:
         cout<<"Draw!"<<endl;
         break;
     }

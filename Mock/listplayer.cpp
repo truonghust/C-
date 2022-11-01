@@ -46,7 +46,7 @@ string listplayer::search(string name)
 
 void listplayer::sortList()
 {
-    for(unsigned int i=0;i<list.size();i++){
+    for(unsigned int i=0;i<list.size()-1;i++){
         for(unsigned int j=i+1;j<list.size();j++){
             if(list[i].winRate()<list[j].winRate()){
                 Player player;
